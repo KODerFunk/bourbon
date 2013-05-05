@@ -10,7 +10,8 @@
                        $deprecated-pos2: center center,
                        $deprecated-radius1: 0,
                        $deprecated-radius2: 460,
-                       $fallback: false) {
+                       $fallback: false,
+                       $stops-as-list: false) {
 
   $data: _radial-arg-parser($G1, $G2, $pos, $shape-size);
   $G1:  nth($data, 1);
@@ -19,6 +20,9 @@
   $shape-size: nth($data, 4);
 
   $full: compact($G1, $G2, $G3, $G4, $G5, $G6, $G7, $G8, $G9, $G10);
+  @if $stops-as-list {
+    $full: nth($full, 1);
+  }
 
   // Strip deprecated cover/contain for spec
   $shape-size-spec: _shape-size-stripper($shape-size);
